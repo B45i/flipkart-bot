@@ -7,7 +7,7 @@ TELEGRAM_API = "https://api.telegram.org/bot422654212:AAEWMk1QHJwflVusYaBhOwu5ld
 GOOGLE_URL_SHORTEN_API = 'AIzaSyCTuTmKuO5CFGhWT6VuSKG--L2-0mAwcRk'
 
 
-def google_url_shorten(url):
+def google_url_shortner(url):
     request_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTEN_API
     payload = {'longUrl': url}
     headers = {'content-type': 'application/json'}
@@ -25,8 +25,9 @@ def get_offers():
     all_offers = requests.get('https://affiliate-api.flipkart.net/affiliate/offers/v1/all/json', headers=headers).json()
     offers = ""
     for items in all_offers["allOffersList"]:
-        offers += "\u26AB" + items["title"] + " in " + items["description"] + " " + google_url_shorten(items["url"]) + "\n\n"
-    return offers
+    	print(items)
+        offers += "\u26AB" + items["title"] + " in " + items["description"] + " " + google_url_shortner(items["url"]) + "\n\n"
+    	return offers
 
 
 def send_message(text):
