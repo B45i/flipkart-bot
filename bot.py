@@ -26,10 +26,12 @@ def get_offers():
     offers = ""
     i = 0
     for items in all_offers["allOffersList"]:
-        offers += "\u26AB" + items["title"] + " in " + items["description"] + " " + google_url_shortner(items["url"]) + "\n\n"
+        offers += "\U000025B6" + items["title"] + " in " + items["description"] + " " + google_url_shortner(items["url"]) + "\n\n"
         if i == 10:
-    		return offers
-    	i += 1	
+            send_message(offers)
+            i = 0
+            offers = ""
+        i += 1  
 
 def send_message(text):
     params = {'chat_id': -1001134172436, 'text': text}
@@ -41,7 +43,7 @@ def main():
     last_time = 0
     while True:
         if time.time() - last_time > 600:
-            send_message(get_offers())
+            get_offers()
             last_time = time.time()
 
 if __name__ == '__main__':
