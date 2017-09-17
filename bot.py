@@ -24,11 +24,12 @@ def get_offers():
 
     all_offers = requests.get('https://affiliate-api.flipkart.net/affiliate/offers/v1/all/json', headers=headers).json()
     offers = ""
+    i = 0
     for items in all_offers["allOffersList"]:
-    	print(items)
         offers += "\u26AB" + items["title"] + " in " + items["description"] + " " + google_url_shortner(items["url"]) + "\n\n"
-    	return offers
-
+        if i == 10:
+    		return offers
+    	i += 1	
 
 def send_message(text):
     params = {'chat_id': -1001134172436, 'text': text}
