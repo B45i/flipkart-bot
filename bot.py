@@ -38,7 +38,7 @@ def send_message(text):
 def main():
     last_time = 0
     while True:
-        if time.time() - last_time > 21600:
+        if time.time() - last_time > 600:
             send_message(get_offers())
             last_time = time.time()
 
