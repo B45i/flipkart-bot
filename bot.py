@@ -27,7 +27,7 @@ def get_offers():
     i = 0
     for items in all_offers["allOffersList"]:
         offers += "\U000025B6" + items["title"] + " in " + items["description"] + " " + google_url_shortner(items["url"]) + "\n\n"
-        if i == 10:
+        if i == 50:
             send_message(offers)
             i = 0
             offers = ""
